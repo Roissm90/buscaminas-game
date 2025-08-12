@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscaminas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <div class="game-container">
+      <div class="top-bar">
+        <!-- Select real oculto -->
+        <select class="difficulty-select" style="display: none">
+          <option value="easy">Easy (8x8 - 10 mines)</option>
+          <option value="medium" selected>Normal (12x12 - 20 mines)</option>
+          <option value="hard">Hard (16x16 - 40 mines)</option>
+          <option value="expert">Expert (20x20 - 80 mines)</option>
+        </select>
+
+        <!-- Select custom -->
+        <div class="custom-select" data-selected="medium">
+          <div class="selected">Normal (12x12 - 20 mines)</div>
+          <div class="options">
+            <div class="option" data-value="easy">Easy (8x8 - 10 mines)</div>
+            <div class="option" data-value="medium">
+              Normal (12x12 - 20 mines)
+            </div>
+            <div class="option hide-mobile" data-value="hard">
+              Hard (16x16 - 40 mines)
+            </div>
+            <div class="option hide-mobile" data-value="expert">
+              Expert (20x20 - 80 mines)
+            </div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <span class="mines-label">💣 <span class="mines-count"></span></span>
+          <span class="timer-label">⏱ <span class="timer">0</span>s</span>
+        </div>
+
+        <button class="restart-btn">Restart</button>
+      </div>
+
+      <div class="board"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./scripts/main.js"></script>
+  </body>
+</html>
