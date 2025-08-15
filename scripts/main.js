@@ -16,7 +16,11 @@ $(function () {
   // Abrir/cerrar opciones con fadeToggle
   $(".custom-select .selected").on("click", function (e) {
     e.stopPropagation();
-    $(this).closest(".custom-select").find(".options").stop(true, true).slideToggle(300);
+    $(this)
+      .closest(".custom-select")
+      .find(".options")
+      .stop(true, true)
+      .slideToggle(300);
   });
 
   // Seleccionar opción
@@ -99,6 +103,9 @@ $(function () {
       let y = Math.floor(Math.random() * rows);
       if (!board[y][x].mine) {
         board[y][x].mine = true;
+
+       //$(`.cell[data-x=${x}][data-y=${y}]`).addClass("bomb");
+
         placed++;
       }
     }
@@ -218,6 +225,16 @@ $(function () {
 
   function checkWin() {
     if (revealedCells === rows * cols - mines) {
+      // Mostrar las minas que quedaron
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          if (board[y][x].mine && !board[y][x].revealed) {
+            let $cell = $(`.cell[data-x=${x}][data-y=${y}]`);
+            $cell.addClass("mine").text("💣");
+          }
+        }
+      }
+
       gameOver(true);
     }
   }
@@ -227,7 +244,9 @@ $(function () {
   });
 
   let initialValue = $(".difficulty-select").val();
-  let initialText = $(`.difficulty-select option[value="${initialValue}"]`).text();
+  let initialText = $(
+    `.difficulty-select option[value="${initialValue}"]`
+  ).text();
   $(".custom-select").attr("data-selected", initialValue);
   $(".custom-select .selected").text(initialText);
   initGame();
